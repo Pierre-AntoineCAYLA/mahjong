@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+
+<BorderPane id="AnchorPane"  minHeight="-Infinity" minWidth="-Infinity" maxHeight="400" maxWidth="600" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.PlayerController">
+  <children>
+    <HBox spacing="20.0" >
+      <children>
+        <VBox minHeight="50.0" minWidth="80.0" spacing="20.0" >
+          <children>
+            <Label alignment="CENTER" contentDisplay="LEFT" text="Joueur"/>
+            <Label alignment="CENTER" contentDisplay="LEFT" text="Nom"/>
+        	<Label alignment="CENTER" contentDisplay="LEFT" text="Vent d'Est"/>
+         </children>
+         <padding>
+			<Insets bottom="0.0" left="5.0" right="0.0" top="5.0" />
+		 </padding>
+       </VBox>
+       <VBox minHeight="50.0" minWidth="50.0" spacing="20.0">
+          <children>
+            <Label text="Joueur 1"/>
+            <TextField fx:id="name1"/>
+        	<RadioButton fx:id="vent1" toggleGroup="$choice">
+				<toggleGroup>
+					<ToggleGroup fx:id="choice" />
+				</toggleGroup>
+			</RadioButton>
+         </children>
+          <padding>
+			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
+		 </padding>
+       </VBox>
+       <VBox minHeight="50.0" minWidth="50.0" spacing="20.0">
+          <children>
+            <Label text="Joueur 2"/>
+            <TextField fx:id="name2"/>
+        	<RadioButton fx:id="vent2" toggleGroup="$choice">
+				<toggleGroup>
+					<fx:reference source="choice" />
+				</toggleGroup>
+			</RadioButton>
+         </children>
+          <padding>
+			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
+		 </padding>
+       </VBox>
+       <VBox minHeight="50.0" minWidth="50.0" spacing="20.0">
+          <children>
+            <Label text="Joueur 3"/>
+            <TextField fx:id="name3"/>
+        	<RadioButton fx:id="vent3" toggleGroup="$choice">
+				<toggleGroup>
+					<fx:reference source="choice"/>
+				</toggleGroup>
+			</RadioButton>
+         </children>
+          <padding>
+			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
+		 </padding>
+       </VBox>
+       <VBox minHeight="50" minWidth="50.0" spacing="20.0">
+          <children>
+            <Label text="Joueur 4"/>
+            <TextField fx:id="name4"/>
+        	<RadioButton fx:id="vent4" toggleGroup="$choice">
+				<toggleGroup>
+					<fx:reference source="choice"/>
+				</toggleGroup>
+			</RadioButton>
+			<Button fx:id="ok" mnemonicParsing="false" text="Ok" alignment="CENTER_RIGHT" disable="true"/>
+         </children>
+          <padding>
+			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
+		 </padding>
+       </VBox>
+     </children>
+    </HBox>
+  </children>
+</BorderPane>

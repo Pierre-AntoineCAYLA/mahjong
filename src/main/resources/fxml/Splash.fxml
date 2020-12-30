@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root type="javafx.scene.layout.StackPane" id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.SplashController">
+  <children>
+    <ImageView fitHeight="383.25" fitWidth="511.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+      <effect>
+        <Glow />
+      </effect>
+      <image>
+        <Image url="@../images/logo.png" />
+      </image>
+    </ImageView>
+    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" StackPane.alignment="CENTER">
+      <children>
+        <Label alignment="CENTER" contentDisplay="LEFT" maxWidth="1.7976931348623157E308" prefWidth="511.0" styleClass="splash" text="MahJong" VBox.vgrow="ALWAYS" />
+      </children>
+    </VBox>
+  </children>
+</fx:root>

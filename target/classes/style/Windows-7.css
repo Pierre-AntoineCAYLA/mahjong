@@ -1,0 +1,379 @@
+.root {
+    -fx-background-color: rgb(238, 238, 238);
+    -fx-text-base-color: #000000;
+    -fx-font-family: "System";
+    -fx-font-size: 12px;
+
+    -act-selection: #55b3f0;
+    -act-sepia: #f3dab6;
+}
+
+Text {
+    -fx-font-smoothing-type: lcd;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * CheckBox                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.check-box {
+    -fx-skin: "javafx.scene.control.skin.CheckBoxSkin";
+    -fx-label-padding: 0.0em 0.0em 0.0em 0.416667em; 
+}
+
+.check-box Text {
+    -fx-font-smoothing-type: lcd;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.check-box:focused {
+    -fx-color: -fx-focused-base;
+}
+
+.check-box .text {
+    -fx-text-fill: -fx-text-background-color;
+}
+
+.check-box .box, .check-box:focused .box {
+    -fx-background-color: #7C7C7C, #FFFFFF, linear-gradient(to bottom right, #A0A4A9, #E5E5E5), linear-gradient(to bottom right, #BDC5CA, #F5F5F5);
+
+    -fx-background-insets: 0, 1, 2, 3;
+    -fx-background-radius: 0;
+    -fx-padding: 2.1; 
+}
+
+.check-box:hover .box {
+    -fx-color: -fx-hover-base;
+}
+
+.check-box:armed .box {
+    -fx-color: -fx-pressed-base;
+}
+
+.check-box .mark {
+    -fx-background-color: transparent;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.333333em;
+    -fx-shape: "M0,4H2L3,6L6,0H8L4,8H2Z";
+}
+
+.check-box:indeterminate .mark {
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-shape: "M0,0H8V2H0Z";
+    -fx-scale-shape: false;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+}
+
+.check-box:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+.check-box:show-mnemonics .mnemonic-underline {
+    -fx-stroke: -fx-text-fill;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * TextField                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+.text-input {
+    -fx-text-fill: #000000;
+    -fx-highlight-fill: #97BDFF;
+    -fx-highlight-text-fill: #000000;
+}
+
+.text-field {
+    -fx-background-color: linear-gradient(to bottom, #9A9DA3 0%, #DBE3EB 100%), #FFFFFF;
+
+    -fx-background-insets: 0, 1;
+
+    -fx-padding: 3 5 3 5;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);
+    -fx-cursor: text;
+}
+
+.text-field Text {
+    -fx-font-smoothing-type: lcd;
+}
+
+.text-field:focused {
+    -fx-background-color: linear-gradient(to bottom, #678AAF 0%, #7599BF 100%), linear-gradient(to bottom, #B2C5D8 0%, #CBDEF2 100%), #F2F2F2, #FFFFFF;
+
+    -fx-background-insets: 0, 1 1 1 1, 2 2 2 2, 3 2 2 2;
+}
+
+.text-field:disabled {
+    -fx-opacity: -fx-disabled-opacity;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * PopupMenu                                                                   *
+ *                                                                             *
+ ******************************************************************************/
+
+.menu, .menu-bar {
+    -fx-background-color: #9B9796, #F0F0F0, #E0E1E1, white, #F0F0F0;
+    -fx-background-insets: 1, 1, 1, 1;
+}
+
+.menu:hover {
+    -fx-background: -act-selection;
+    -fx-background-color: -act-selection;
+}
+
+.context-menu {
+    -fx-background-color: #9B9796, #F0F0F0, #E0E1E1, white, #F0F0F0;
+    -fx-background-radius: 1;
+    -fx-background-insets: 3, 1, 1, 1;
+    -fx-border-color: black black black black;
+    -fx-border-width: 1 1 1 1;
+}
+
+.context-menu .separator {
+    -fx-padding: 0 0 0 0;
+    -fx-valignment: top;
+}
+
+.context-menu:focused {
+}
+
+.menu-item {
+    -fx-font-family: Arial;
+}
+
+.menu-item .label {
+    -fx-text-fill: black;
+}
+
+.menu-item:focused {
+    -fx-background: -act-selection;
+    -fx-background-color: -act-selection;
+}
+
+.menu-item:focused {
+
+    -fx-background: #0093ff;
+}
+
+.separator:horizontal .line {
+    -fx-background-color: #E1E1E1, #FFFFFF;
+    -fx-background-insets: 0, 1 0 0 0;
+    -fx-padding: 2 0 0 29;
+
+}
+
+.tool-bar-button {
+    -fx-background-color: null;
+}
+
+.tool-bar-button:hover {
+    -fx-cursor: hand;
+}
+
+.scroll-bar .increment-button {
+    -fx-padding: 0.35em; 
+}
+
+.scroll-bar .decrement-button {
+    -fx-padding: 0.35em; 
+}
+
+.more-window {
+
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+.button, .flat-button {
+    -fx-background-color: rgb(65, 65, 65);
+    -fx-background-radius: 3, 3, 2, 2;
+    -fx-text-fill: white;
+}
+
+.button:focused {
+    -fx-text-fill: lightblue;
+}
+
+.button:hover {
+    -fx-text-fill: lightblue;
+}
+
+.button:armed {
+    -fx-background-color: rgb(30, 30, 30);
+}
+/*
+.shelf,
+{
+    -fx-background-radius: 0.5em;
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-opacity: 0.5;
+    -fx-border-radius: 2em;
+}
+*/
+.shelf .track {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-opacity: 0;
+}
+
+.shelf .increment-button,
+.shelf .decrement-button {
+    -fx-background-radius: 0.5em;
+    -fx-padding: 1.5em;
+}
+
+.htmleditor {
+    -fx-border-color: -fx-box-border;
+    -fx-border-width: 1px;
+}
+
+.label-h1 {
+    -fx-font-size: 140%;
+}
+
+.label-h2 {
+    -fx-font-size: 120%;
+}
+
+.label-bold {
+    -fx-font-weight: bold;
+}
+
+.tooltipex {
+    -fx-skin: "com.actelion.research.jfx.gui.controls.skin.TooltipSkinEx";
+    -fx-background-color:
+        linear-gradient(#cec340, #a59c31),
+        linear-gradient(#fefefc, #e6dd71),
+        linear-gradient(#fef592, #e5d848);
+    -fx-background-insets: 0,1,2;
+    -fx-background-radius: 0 0 13 0;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+}
+.tooltipex {
+    -fx-background-color: linear-gradient(#e2ecfe, #99bcfd);
+    -fx-background-radius: 3 3 3 3;
+}
+
+.page-corner {
+    -fx-background-color: linear-gradient(from 0% 0% to 50% 50%, #3278fa, #99bcfd);
+    -fx-shape: " ";
+}
+
+.splash, .splash-version {
+    -fx-font-size: 48px;
+    -fx-background-radius: 0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ff2f27;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-effect: innershadow(three-pass-box, rgba(.5, 02, 0.2, 0.7), 6, 0.0, 0, 2);
+}
+
+.splash-version {
+    -fx-font-size: 18px;
+}
+
+.sepia {
+    -fx-background-color: -act-sepia;
+}
+
+#headline {
+    -fx-font-size: 24px;
+}
+
+#header {
+    -fx-background-color: #ccc;
+}
+
+.traceReference {
+    -fx-font-size: 12px;
+    -fx-base: rgba(1, 1, 1, 0);
+    -fx-background-color: -fx-focus-color, #983737;
+    -fx-background-insets: 0, 1;
+    -fx-border-color: gray;
+    -fx-border-width: 1 1 0 0;
+    -fx-text-fill: white;
+}
+
+.traceUsed {
+    -fx-font-size: 12px;
+    -fx-base: rgba(1, 1, 1, 0);
+    -fx-background-color: -fx-focus-color, #347b34;
+    -fx-background-insets: 0, 1;
+    -fx-border-color: gray;
+    -fx-border-width: 1 1 0 0;
+    -fx-text-fill: white;
+}
+
+.blowImage {
+    -fx-background-color: rgba(255, 255, 255, 1);
+}
+
+.loadingImage {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(138, 189, 255, .6);
+}
+
+.tool-bar:horizontal {
+    -fx-background-color: rgb(60, 60, 60);
+}
+
+.active-rack {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-focus-color, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}
+
+.product-preview-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background: null;
+}
+
+.product-preview-view:focused .table-row-cell:filled:selected,
+.product-preview-view:row-selection .table-row-cell:filled:hover:selected {
+    -fx-background: null;
+}
+
+.table-cell {
+    -fx-padding: 0;
+}
+
+.purity-cell-group {
+    -fx-font-weight: bold;
+    -fx-stroke-width: 2px;
+    -fx-fill: #f5ffef;
+}
+
+.hoverinfo {
+    -fx-text-fill: darkblue;
+}
+
+#preview-table .table-cell {
+    -fx-alignment: center;
+}
+.product-valid {
+    -fx-background-color: -fx-focus-color, #129822;
+    -fx-text-fill: #2b2b2b;
+}
+
+.product-exists {
+    -fx-background-color: -fx-focus-color, #fffa12;
+    -fx-text-fill: #2b2b2b;
+}
+.product-invalid {
+    -fx-background-color: -fx-focus-color, #983540;
+    -fx-text-fill: white;
+}
