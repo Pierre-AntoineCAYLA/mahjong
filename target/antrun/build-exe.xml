@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="exe"  >
-<target name="exe">
-  <property name="compile_classpath" refid="maven.compile.classpath"/>
-  <taskdef classname="com.actelion.research.putjar.PutJarTask" classpath="${compile_classpath}" name="putjar"/>
-  <putjar mainclass="mahjong.App" debug="false" classpath="" jarfile="C:\Users\caylapi1\src\mahjong/target/mahjong-0.0.1-jar-with-dependencies.jar" vmoptions="" outfile="C:\Users\caylapi1\src\mahjong/target/mahjong.exe" icon="C:\Users\caylapi1\src\mahjong/src/main/resources/mahjong.ico" arch="x86"/>
-</target>
-</project>

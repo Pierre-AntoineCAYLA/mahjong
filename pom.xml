@@ -11,7 +11,7 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
-	<dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.1.7.RELEASE</version>
@@ -41,7 +41,7 @@
 			<artifactId>spring-orm</artifactId>
 			<version>4.1.7.RELEASE</version>
 		</dependency>
-	  <dependency>
+		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>javafx</artifactId>
 			<version>2.2.3</version>
@@ -53,8 +53,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.actelion.research</groupId>
-			<artifactId>putjar</artifactId>
-			<version>1.0.0</version>
+			<artifactId>dd_share</artifactId>
+			<version>71</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -96,41 +96,33 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
+				<groupId>com.akathist.maven.plugins.launch4j</groupId>
+				<artifactId>launch4j-maven-plugin</artifactId>
+				<version>1.7.25</version>
 				<executions>
 					<execution>
-						<id>exe</id>
+						<id>l4j-clui</id>
 						<phase>package</phase>
 						<goals>
-							<goal>run</goal>
+							<goal>launch4j</goal>
 						</goals>
 						<configuration>
-							<target name="exe">
-								<property name="compile_classpath"
-									refid="maven.compile.classpath" />
-								<taskdef name="putjar"
-									classname="com.actelion.research.putjar.PutJarTask"
-									classpath="${compile_classpath}" />
-								<putjar outfile="${basedir}/target/mahjong.exe"
-									jarfile="${basedir}/target/mahjong-0.0.1-jar-with-dependencies.jar"
-									mainclass="mahjong.App"
-									classpath=""
-									icon="${basedir}/src/main/resources/mahjong.ico"
-									vmoptions=""
-									arch="x86" debug="false" />
-							</target>
-						</configuration>
-					</execution>
-					<execution>
-						<id>app</id>
-						<phase>package</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target name="app">
-							</target>
+							<headerType>gui</headerType>
+							<jar>${basedir}/target/${project.artifactId}-${project.version}-jar-with-dependencies.jar</jar>
+							<outfile>${basedir}/target/MahJong.exe</outfile>
+							<downloadUrl>http://java.com/download</downloadUrl>
+							<classPath>
+								<mainClass>mahjong.App</mainClass>
+							</classPath>
+							<icon>${basedir}/src/main/resources/mahjong.ico</icon>
+							<jre>
+								<path>C:\Program Files\Java\jdk1.8.0_181</path>
+								<bundledJre64Bit>true</bundledJre64Bit>
+								<bundledJreAsFallback>true</bundledJreAsFallback>
+								<minVersion>1.8</minVersion>
+								<jdkPreference>preferJre</jdkPreference>
+								<runtimeBits>32</runtimeBits>
+							</jre>
 						</configuration>
 					</execution>
 				</executions>
