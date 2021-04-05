@@ -56,5 +56,9 @@ public class Player {
 
 	public void setLastEast() {
 		this.east=eastHistory.get(eastHistory.size()-1);
+	}
+
+	public void setLastScore(int score) {
+		this.score=this.score+score;
 	}	
 }

@@ -105,8 +105,7 @@ public class MainFrameController extends Controller {
 						player.setEast(false);
 					}
 				}
-				if(scoreRbtn.isSelected())
-					writeScore();
+				writeScore();
 			}
 		});
 
@@ -122,9 +121,9 @@ public class MainFrameController extends Controller {
 		undoBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent actionEvent) {
 				for(Player player : players) {
-					if(player.getHistory().size()>0) {
+					if(player.getHistory().size()>1) {
 						int lastPoint = player.getHistory().get(player.getHistory().size()-1);
-						player.addScore(-lastPoint);
+						player.setLastScore(-lastPoint);
 						player.getHistory().remove(player.getHistory().size()-1);
 						player.getEastHistory().remove(player.getEastHistory().size()-1);
 						player.setLastEast();
@@ -156,7 +155,6 @@ public class MainFrameController extends Controller {
 					scoreList.clear();
 					scoreList.add(newLabelName(player.getName()));
 					int scoreTot=0;
-					scoreList.add(newLabel(scoreTot, false));
 					int i=0;
 					for(int score : player.getHistory()) {
 						scoreTot=scoreTot+score;

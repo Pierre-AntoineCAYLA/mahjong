@@ -15,8 +15,10 @@ public class PlayerServiceImpl extends PlayerService{
 		players.add(new Player(name2,1));
 		players.add(new Player(name3,2));
 		players.add(new Player(name4,3));
-		for(Player player : players)
+		for(Player player : players) {
 			player.setEast(player.getIndex()==estPlayer);
+			player.addScore(0);
+		}
 	}
 	
 	@Override
