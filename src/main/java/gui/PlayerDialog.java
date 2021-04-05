@@ -20,7 +20,6 @@ public class PlayerDialog extends TDialog {
 	public void buildGUI(BorderPane parent) {
 		PlayerController cntrl = (PlayerController) FXMLHelper.loadFXML("/fxml/PlayerView.fxml");
 		cntrl.setService(srv);
-		setSize(400, 200);
 		parent.setCenter(cntrl.getView());
 		cntrl.setCallBack(this);
 	}

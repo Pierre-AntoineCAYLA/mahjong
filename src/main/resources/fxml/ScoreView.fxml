@@ -11,7 +11,7 @@
 <?import javafx.geometry.Insets?>
 
 
-<BorderPane id="AnchorPane"  minHeight="-Infinity" minWidth="-Infinity" maxHeight="600" maxWidth="1100" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ScoreController">
+<BorderPane id="AnchorPane"  prefHeight="160" prefWidth="500" minHeight="-Infinity" minWidth="500" maxHeight="400" maxWidth="600" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ScoreController">
   <children>
     <HBox spacing="20.0" >
       <children>
@@ -25,7 +25,7 @@
 			<Insets bottom="0.0" left="5.0" right="0.0" top="5.0" />
 		 </padding>
        </VBox>
-       <VBox minHeight="500.0" minWidth="50.0" spacing="20.0">
+       <VBox minHeight="500.0" minWidth="70.0" spacing="20.0">
           <children>
             <Label fx:id="j1"/>
             <TextField fx:id="score1"/>
@@ -39,7 +39,7 @@
 			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
 		 </padding>
        </VBox>
-       <VBox minHeight="50" minWidth="50.0" spacing="20.0">
+       <VBox minHeight="50" minWidth="70.0" spacing="20.0">
           <children>
             <Label fx:id="j2"/>
             <TextField fx:id="score2"/>
@@ -53,7 +53,7 @@
 			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
 		 </padding>
        </VBox>
-       <VBox minHeight="50" minWidth="50" spacing="20.0">
+       <VBox minHeight="50" minWidth="70" spacing="20.0">
           <children>
             <Label fx:id="j3"/>
             <TextField fx:id="score3"/>
@@ -67,7 +67,7 @@
 			<Insets bottom="0.0" left="0.0" right="0.0" top="5.0" />
 		 </padding>
        </VBox>
-       <VBox minHeight="50" minWidth="50" spacing="20.0">
+       <VBox minHeight="50" minWidth="70" spacing="20.0">
           <children>
             <Label fx:id="j4"/>
             <TextField fx:id="score4"/>

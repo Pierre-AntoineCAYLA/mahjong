@@ -37,10 +37,9 @@ public class ScoreService {
 				}
 				player.addScore(score);
 			}
+			player.setEast(player.getIndex()==mahJongPlayer);
 			i = i + 1;
 		}
-		players.get(lastEastPlayer).setEast(false);
-		players.get(mahJongPlayer).setEast(true);
 	}
 
 }

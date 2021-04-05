@@ -9,7 +9,7 @@
 <BorderPane id="base" maxHeight="600.0" maxWidth="400" prefHeight="600.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml"
             fx:controller="controller.MainFrameController">
     <center>
-        <HBox alignment="CENTER" spacing="50">
+        <HBox fx:id="scores" alignment="CENTER" spacing="50">
         	<children>
         		<VBox fx:id="score1"/>
         		<VBox fx:id="score2"/>
@@ -45,8 +45,11 @@
     <bottom>
         <HBox alignment="CENTER_RIGHT">
         	<children>
+        		<RadioButton fx:id="scoreRbtn" text="Score"/>
+        		<RadioButton fx:id="historyRbtn" text="History"/>
         		<Button fx:id="tournerBtn" text="Tourner les vents"/>
         		<Button fx:id="mancheBtn" text="Nouvelle manche"/>
+        		<Button fx:id="undoBtn" text="Annuler manche"/>
         	</children>
         </HBox>
     </bottom>

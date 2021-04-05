@@ -17,7 +17,6 @@ public class ScoreDialog extends TDialog {
 	public void buildGUI(BorderPane parent) {
 		ScoreController cntrl = (ScoreController) FXMLHelper.loadFXML("/fxml/ScoreView.fxml");
 		parent.setCenter(cntrl.getView());
-		setSize(400, 200);
 		cntrl.setCallBack(this);
 	}
 }

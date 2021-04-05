@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,8 +12,12 @@ import gui.ScoreDialog;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -23,6 +30,8 @@ import service.PlayerService;
 public class MainFrameController extends Controller {
 
 	@FXML
+	HBox scores;
+	@FXML
 	VBox score1;
 	@FXML
 	VBox score2;
@@ -33,7 +42,13 @@ public class MainFrameController extends Controller {
 	@FXML
 	Button mancheBtn;
 	@FXML
+	Button undoBtn;
+	@FXML
 	Button tournerBtn;
+	@FXML
+	RadioButton scoreRbtn;
+	@FXML
+	RadioButton historyRbtn;
 	Font font=new Font("Arial", 30);
 	Font fontBold = Font.font("Arial", FontWeight.BOLD,30);
 	Font fontBoldItalic = Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC,30);
@@ -45,36 +60,53 @@ public class MainFrameController extends Controller {
 		stage.setTitle("Mah-Jong Score");
 		getView().setStyle("-fx-background-image: url('images/background.png');");
 
-		Label name1=new Label(players.get(0).getName());
-		name1.setFont(fontBold);
-		score1.getChildren().add(name1);
-		Label name2 = new Label(players.get(1).getName());
-		name2.setFont(fontBold);
-		score2.getChildren().add(name2);
-		Label name3 = new Label(players.get(2).getName());
-		name3.setFont(fontBold);
-		score3.getChildren().add(name3);
-		Label name4= new Label(players.get(3).getName());
-		name4.setFont(fontBold);
-		score4.getChildren().add(name4);
+		ToggleGroup group = new ToggleGroup();
+	    scoreRbtn.setToggleGroup(group);
+	    historyRbtn.setToggleGroup(group);
+	    
+		score1.getChildren().add(newLabelName(players.get(0).getName()));
+		score2.getChildren().add(newLabelName(players.get(1).getName()));
+		score3.getChildren().add(newLabelName(players.get(2).getName()));
+		score4.getChildren().add(newLabelName(players.get(3).getName()));
 
 		tournerBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				Iterator<Player> iterator = players.iterator();
+				List<Player> playersInverse = new ArrayList<Player>(players);
+				Collections.sort(playersInverse, new Comparator<Player>() {
+					@Override
+					public int compare(Player o1, Player o2) {
+						if(o1.getIndex()==o2.getIndex())
+							return 0;
+						return o1.getIndex()<o2.getIndex()?1:-1;
+					}
+					
+				});
+				for(Player player : players) {
+					player.addScore(0);
+				}
+				Iterator<Player> iterator = playersInverse.iterator();
 				boolean find = false;
+				Player newEast=null;
 				while (iterator.hasNext() && !find) {
 					Player player = iterator.next();
 					if ((player).isEast()) {
 						find = true;
-						player.setEast(false);
-						if (iterator.hasNext())
-							iterator.next().setEast(true);
-						else
-							players.get(0).setEast(true);
+						if (iterator.hasNext()) {
+							newEast=iterator.next();
+						}else {
+							newEast=playersInverse.get(0);
+						}
+						newEast.setEast(true);
 					}
 				}
-				writeScore();
+				for(Player player : players) {
+					if(!player.equals(newEast)) {
+						player.setEast(false);
+					}
+				}
+				if(scoreRbtn.isSelected())
+					writeScore();
 			}
 		});
 
@@ -86,25 +118,85 @@ public class MainFrameController extends Controller {
 				}
 			}
 		});
+		
+		undoBtn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent actionEvent) {
+				for(Player player : players) {
+					if(player.getHistory().size()>0) {
+						int lastPoint = player.getHistory().get(player.getHistory().size()-1);
+						player.addScore(-lastPoint);
+						player.getHistory().remove(player.getHistory().size()-1);
+						player.getEastHistory().remove(player.getEastHistory().size()-1);
+						player.setLastEast();
+						((VBox)scores.getChildren().get(player.getIndex())).getChildren().remove(((VBox)scores.getChildren().get(player.getIndex())).getChildren().size()-1);
+					}
+				}
+			}
+		});
+		
+		historyRbtn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent actionEvent) {
+				for(Player player : players) {
+					List<Node> scoreList = ((VBox)scores.getChildren().get(player.getIndex())).getChildren();
+					scoreList.clear();
+					scoreList.add(newLabelName(player.getName()));
+					int i=0;
+					for(int score : player.getHistory()) {
+						scoreList.add(newLabel(score, player.getEastHistory().get(i)));
+						i=i+1;
+					}
+				}
+			}
+		});
+		
+		scoreRbtn.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent actionEvent) {
+				for(Player player : players) {
+					List<Node> scoreList = ((VBox)scores.getChildren().get(player.getIndex())).getChildren();
+					scoreList.clear();
+					scoreList.add(newLabelName(player.getName()));
+					int scoreTot=0;
+					scoreList.add(newLabel(scoreTot, false));
+					int i=0;
+					for(int score : player.getHistory()) {
+						scoreTot=scoreTot+score;
+						scoreList.add(newLabel(scoreTot, player.getEastHistory().get(i)));
+						i=i+1;
+					}
+				}
+			}
+		});
+		scoreRbtn.setSelected(true);
 		writeScore();
 	}
 
 	private void writeScore() {
-		Label label1 = new Label(players.get(0).getScore() + (players.get(0).isEast() ? "*" : ""));
-		label1.setFont(font);
-		score1.getChildren().add(label1);
-		Label label2 = new Label(players.get(1).getScore() + (players.get(1).isEast() ? "*" : ""));
-		label2.setFont(font);
-		score2.getChildren().add(label2);
-		Label label3 = new Label(players.get(2).getScore() + (players.get(2).isEast() ? "*" : ""));
-		label3.setFont(font);
-		score3.getChildren().add(label3);
-		Label label4 = new Label(players.get(3).getScore() + (players.get(3).isEast() ? "*" : ""));
-		label4.setFont(font);
-		score4.getChildren().add(label4);
+		if(scoreRbtn.isSelected()) {
+			score1.getChildren().add(newLabel(players.get(0).getScore(),players.get(0).isEast()));
+			score2.getChildren().add(newLabel(players.get(1).getScore(),players.get(1).isEast()));
+			score3.getChildren().add(newLabel(players.get(2).getScore(),players.get(2).isEast()));
+			score4.getChildren().add(newLabel(players.get(3).getScore(),players.get(3).isEast()));
+		}else {
+			score1.getChildren().add(newLabel(players.get(0).getHistory().get(players.get(0).getHistory().size()-1),players.get(0).isEast()));
+			score2.getChildren().add(newLabel(players.get(1).getHistory().get(players.get(1).getHistory().size()-1),players.get(1).isEast()));
+			score3.getChildren().add(newLabel(players.get(2).getHistory().get(players.get(2).getHistory().size()-1),players.get(2).isEast()));
+			score4.getChildren().add(newLabel(players.get(3).getHistory().get(players.get(3).getHistory().size()-1),players.get(3).isEast()));
+		}
 		changeEst();
 	}
 	
+	private Label newLabelName(String name) {
+		Label nameLbl=new Label(name);
+		nameLbl.setFont(fontBold);
+		return nameLbl;
+	}
+	
+	private Label newLabel(Integer score, boolean east) {
+		Label label = new Label(score + (east ? "*" : ""));
+		label.setFont(font);
+		return label;
+	}
+
 	private void changeEst() {
 		if(players.get(0).isEast()) {
 			((Label)score1.getChildren().get(0)).setTextFill(Color.BLUE);

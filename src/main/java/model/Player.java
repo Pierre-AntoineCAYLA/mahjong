@@ -7,6 +7,7 @@ public class Player {
 	private String name;
 	private Integer score=0;
 	private ArrayList<Integer> history=new ArrayList<>();
+	private ArrayList<Boolean> eastHistory=new ArrayList<>();
 	private boolean east;
 	private int index;
 	
@@ -25,6 +26,7 @@ public class Player {
 	
 	public void setEast(boolean east) {
 		this.east = east;
+		this.eastHistory.add(east);
 	}
 	
 	public boolean isEast() {
@@ -43,8 +45,16 @@ public class Player {
 		return index;
 	}
 	
+	public ArrayList<Boolean> getEastHistory(){
+		return this.eastHistory;
+	}
+	
 	public void addScore(Integer score) {
 		this.score=this.score+score;
 		history.add(score);
+	}
+
+	public void setLastEast() {
+		this.east=eastHistory.get(eastHistory.size()-1);
 	}	
 }
